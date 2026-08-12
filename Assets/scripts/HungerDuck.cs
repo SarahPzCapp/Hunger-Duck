@@ -1,92 +1,65 @@
-
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class HungerDuck : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    public InputAction moveKeys;
-    public InputAction jumpAction; // novo InputAction para o pulo
-    Rigidbody2D rb;
-    int velocity = 5;
-    public SpriteRenderer sprite;
-    bool chaoEsta;
-    Transform groundcheck;
-    public LayerMask chaoPlayer;
-    bool isJumping;
-    float jumpForce = 10f;
+    public float velocidade = 5f;
+    public float forcaDoPulo = 8f;
 
-    void Awake()
+    private Rigidbody2D rb;
+    private bool estaNoChao;
+    private bool viradoParaDireita = true; // começa olhando pra direita
+    public int pontos = 0;
+
+    void Start()
     {
-        groundcheck = GameObject.Find("groundcheck").transform;
         rb = GetComponent<Rigidbody2D>();
-        sprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
-    }
-
-    void OnEnable()
-    {
-        moveKeys.Enable();
-        jumpAction.Enable();
-    }
-
-    void OnDisable()
-    {
-        moveKeys.Disable();
-        jumpAction.Disable();
     }
 
     void Update()
     {
-        Movement();
-        Turn();
+        // Movimento horizontal
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        rb.linearVelocity = new Vector2(horizontal * velocidade, rb.linearVelocity.y);
 
-        // L� o pulo pelo InputAction
-        if (jumpAction.WasPressedThisFrame() && chaoEsta)
+        // Flip: vira o personagem conforme a direção
+        if (horizontal > 0 && !viradoParaDireita)
         {
-            isJumping = true;
+            Virar();
+        }
+        else if (horizontal < 0 && viradoParaDireita)
+        {
+            Virar();
         }
 
-        // Pulo curto (release)
-        if (jumpAction.WasReleasedThisFrame() && rb.linearVelocity.y > 0)
+        // Pulo
+        if (Input.GetKeyDown(KeyCode.Space) && estaNoChao)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * 0.2f);
-        }
-    }
-
-    void FixedUpdate()
-    {
-        Groundcheck();
-        Jump();
-    }
-
-    void Jump()
-    {
-        if (isJumping)
-        {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-            isJumping = false;
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, forcaDoPulo);
         }
     }
 
-    void Movement()
+    void Virar()
     {
-        var direction = moveKeys.ReadValue<float>();
-        if (direction != 0)
-        {
-            rb.linearVelocity = new Vector2(direction * velocity, rb.linearVelocity.y);
-        }
+        viradoParaDireita = !viradoParaDireita;
+        Vector3 escala = transform.localScale;
+        escala.x *= -1; // inverte o eixo X
+        transform.localScale = escala;
     }
 
-    void Turn()
+    void OnCollisionEnter2D(Collision2D col)
     {
-        var direction = moveKeys.ReadValue<float>();
-        if (direction < 0)
-            sprite.flipX = true;
-        else if (direction > 0)
-            sprite.flipX = false;
+        estaNoChao = true;
     }
 
-    void Groundcheck()
+    void OnCollisionExit2D(Collision2D col)
     {
-        chaoEsta = Physics2D.Linecast(groundcheck.position, transform.position, chaoPlayer);
+        estaNoChao = false;
     }
+
+    public void SomarPonto()
+    {
+        pontos++;
+        Debug.Log("Pontos: " + pontos);
+    }
+
 }
