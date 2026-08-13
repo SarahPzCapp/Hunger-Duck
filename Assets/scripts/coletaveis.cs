@@ -8,10 +8,10 @@ public class Coletavel : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PlayerController  pato = other.GetComponent<PlayerController>();
-            if (pato != null)
+            PlayerController  Player = other.GetComponent<PlayerController>();
+            if (Player != null)
             {
-                pato.SomarPonto();
+                Player.SomarPonto();
             }
             Destroy(gameObject);
         }

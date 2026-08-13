@@ -56,10 +56,10 @@ public class PlayerController : MonoBehaviour
         estaNoChao = false;
     }
 
+     
     public void SomarPonto()
     {
-        pontos++;
-        Debug.Log("Pontos: " + pontos);
+        GetComponent<Pontuacao>().GanharPonto();
     }
 
 }

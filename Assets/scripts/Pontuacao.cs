@@ -5,10 +5,10 @@ public class Pontuacao : MonoBehaviour
 {
     public int pontos = 0;
     public TMP_Text textoPontos; // arraste o TextMeshPro aqui no Inspector
-
     public void GanharPonto()
     {
         pontos++;
+        Debug.Log("Ponto ganho! Total: " + pontos);
         AtualizarTexto();
     }
 
@@ -19,4 +19,6 @@ public class Pontuacao : MonoBehaviour
             textoPontos.text = "Pontos: " + pontos;
         }
     }
+
+     
 }

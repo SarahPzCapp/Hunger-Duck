@@ -18,7 +18,7 @@ public class Ninho : MonoBehaviour
             else if (mensagem != null)
             {
                 // Mostra aviso na tela quando não tem pontos suficientes
-                mensagem.text = "Você precisa de 3 pontos!";
+                mensagem.text = "Você precisa de mais 3 pontos!";
             }
         }
     }

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5391d45f12b42b04b88bd443b979a11a
+guid: 80ea780865e3bd948af56241abd7cc2e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6868253037413721303
-    second: telainicio_0
+      213: 5420872435440405611
+    second: teladerrota_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,7 +126,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: telainicio_0
+      name: teladerrota_0
       rect:
         serializedVersion: 2
         x: 0
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 92b157580401fa0a0800000000000000
-      internalID: -6868253037413721303
+      spriteID: b6cc12f42ceca3b40800000000000000
+      internalID: 5420872435440405611
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      telainicio_0: -6868253037413721303
+      teladerrota_0: 5420872435440405611
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
