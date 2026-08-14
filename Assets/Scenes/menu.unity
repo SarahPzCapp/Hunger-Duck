@@ -465,8 +465,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 18.250114, y: 15.9498}
-  m_SizeDelta: {x: 115.0402, y: 57.2291}
+  m_AnchoredPosition: {x: 134.29028, y: 96.175385}
+  m_SizeDelta: {x: 839.9346, y: 343.7487}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &966757432
 MonoBehaviour:
@@ -624,7 +624,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
